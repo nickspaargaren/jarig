@@ -33,7 +33,12 @@ const Home = () => {
       history = [...history, dayjs(`${currentDateYear - i}-${date.month}-${date.date}`).format('dddd').toLowerCase()];
     }
 
-    const mode = (arr: string[]) => arr.sort((a: any, b: any) => arr.filter((v: any) => v === a).length - arr.filter((v: any) => v === b).length).pop();
+    const mode = (arr: string[]) => arr
+      .sort(
+        (a: any, b: any) => arr.filter((v: any) => v === a).length
+            - arr.filter((v: any) => v === b).length,
+      )
+      .pop();
 
     const mostFrequent: any = mode(history);
     setInfo(mostFrequent);
