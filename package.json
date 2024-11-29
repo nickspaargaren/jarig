@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "docker": "docker-compose up -d --build"
+    "lint": "next lint"
   },
   "dependencies": {
     "dayjs": "^1.10.7",
