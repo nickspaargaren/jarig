@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import 'dayjs/locale/nl';
-import styles from '../styles/Home.module.css';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import styles from '../styles/Home.module.css';
 
 dayjs.locale('nl');
 
@@ -22,10 +22,10 @@ const schema = z.object({
 });
 
 const Home = () => {
-  const [details, setDetails] = useState<Date>({ day: 0, month: 0, year: 0 });
+  const [details] = useState<Date>({ day: 0, month: 0, year: 0 });
   const [info, setInfo] = useState<string | null>();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<Date>({
     resolver: zodResolver(schema),
   });
 
@@ -45,7 +45,7 @@ const Home = () => {
     const mode = (arr: string[]) => arr
       .sort(
         (a: any, b: any) => arr.filter((v: any) => v === a).length
-            - arr.filter((v: any) => v === b).length,
+          - arr.filter((v: any) => v === b).length,
       )
       .pop();
 
@@ -67,23 +67,25 @@ const Home = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Jarig</h1>
 
-        <form onSubmit={handleSubmit((data) => {
-          setDetails(data);
-          find(data);
-        })} className={styles.fields}>
+        <form
+          onSubmit={handleSubmit((data) => {
+            find(data);
+          })}
+          className={styles.fields}
+        >
           <div>
             Dag
-            <input type="number" {...register('day')} />
+            <input type="number" {...register('day', { valueAsNumber: true })} />
             {errors.day && <span>{errors.day.message}</span>}
           </div>
           <div>
             Maand
-            <input type="number" {...register('month')} />
+            <input type="number" {...register('month', { valueAsNumber: true })} />
             {errors.month && <span>{errors.month.message}</span>}
           </div>
           <div>
             Jaar
-            <input type="number" {...register('year')} />
+            <input type="number" {...register('year', { valueAsNumber: true })} />
             {errors.year && <span>{errors.year.message}</span>}
           </div>
           <div>
