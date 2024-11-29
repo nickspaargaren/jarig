@@ -9,17 +9,13 @@ import styles from '../styles/Home.module.css';
 
 dayjs.locale('nl');
 
-type Date = {
-  day: number | null;
-  month: number | null;
-  year: number | null;
-}
-
 const schema = z.object({
   day: z.number().min(1).max(31),
   month: z.number().min(1).max(12),
   year: z.number().min(1900).max(new Date().getFullYear()),
 });
+
+type Date = z.infer<typeof schema>;
 
 const Home = () => {
   const [details] = useState<Date>({ day: 0, month: 0, year: 0 });
@@ -32,9 +28,9 @@ const Home = () => {
   const inputDate: string = dayjs(`${details.year}-${details.month}-${details.day}`).format('dddd').toLowerCase();
 
   const find = (date: Date) => {
-    const inputDateYear: any = dayjs(`${date.year}-${date.month}-${date.day}`).format('YYYY');
-    const currentDateYear: any = dayjs().format('YYYY');
-    const birthdays: any = currentDateYear - inputDateYear;
+    const inputDateYear = Number(dayjs(`${date.year}-${date.month}-${date.day}`).format('YYYY'));
+    const currentDateYear = Number(dayjs().format('YYYY'));
+    const birthdays = currentDateYear - inputDateYear;
 
     let history: string[] = [];
 
@@ -44,12 +40,12 @@ const Home = () => {
 
     const mode = (arr: string[]) => arr
       .sort(
-        (a: any, b: any) => arr.filter((v: any) => v === a).length
-          - arr.filter((v: any) => v === b).length,
+        (a, b) => arr.filter((v) => v === a).length
+          - arr.filter((v) => v === b).length,
       )
       .pop();
 
-    const mostFrequent: any = mode(history);
+    const mostFrequent = mode(history);
     setInfo(mostFrequent);
   };
 
