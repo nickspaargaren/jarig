@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.9.1",
     "dayjs": "^1.11.13",
     "next": "15.0.3",
+    "next-intl": "^3.25.3",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
