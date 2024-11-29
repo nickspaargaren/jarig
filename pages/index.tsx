@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styles from '../styles/Home.module.css';
+import { useTranslations } from 'next-intl';
 
 dayjs.locale('nl');
 
@@ -20,6 +21,7 @@ type Date = z.infer<typeof schema>;
 const Home = () => {
   const [details] = useState<Date>({ day: 0, month: 0, year: 0 });
   const [info, setInfo] = useState<string | null>();
+  const t = useTranslations('Home');
 
   const { register, handleSubmit, formState: { errors } } = useForm<Date>({
     resolver: zodResolver(schema),
@@ -61,7 +63,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Jarig</h1>
+        <h1 className={styles.title}>{t('title')}</h1>
 
         <form
           onSubmit={handleSubmit((data) => {
@@ -70,27 +72,27 @@ const Home = () => {
           className={styles.fields}
         >
           <div>
-            Dag
+            {t('day')}
             <input type="number" {...register('day', { valueAsNumber: true })} />
             {errors.day && <span>{errors.day.message}</span>}
           </div>
           <div>
-            Maand
+            {t('month')}
             <input type="number" {...register('month', { valueAsNumber: true })} />
             {errors.month && <span>{errors.month.message}</span>}
           </div>
           <div>
-            Jaar
+            {t('year')}
             <input type="number" {...register('year', { valueAsNumber: true })} />
             {errors.year && <span>{errors.year.message}</span>}
           </div>
           <div>
-            <button type="submit">Bekijken</button>
+            <button type="submit">{t('submit')}</button>
           </div>
         </form>
 
-        <div>{info && inputDate !== 'invalid date' && `U bent geboren op een ${inputDate}`}</div>
-        <div>{info && `U bent het vaakst jarig geweest op een ${info}`}</div>
+        <div>{info && inputDate !== 'invalid date' && t('bornOn', { day: inputDate })}</div>
+        <div>{info && t('mostFrequent', { day: info })}</div>
 
       </main>
     </div>
