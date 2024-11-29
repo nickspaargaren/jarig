@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    groups:
+      eslint:
+        patterns:
+          - "eslint*"
+    ignore:
+      - dependency-name: "eslint"
+        versions: [">= 8"]
