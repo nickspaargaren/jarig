@@ -1,6 +1,6 @@
 # Jarig
 
-> **Info**: This repository is currently used for testing code AI capabilities with Copilot Workspace.
+> **Info**: This repository is currently used for testing code AI capabilities with Copilot Workspace. Visit: https://githubnext.com/projects/copilot-workspace
 
 ## Project Overview
 
