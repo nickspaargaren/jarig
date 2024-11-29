@@ -1,5 +1,8 @@
 # Jarig
 
+> [!NOTE]
+> This repository is currently used for testing code AI capabilities with Copilot Workspace. Visit: https://githubnext.com/projects/copilot-workspace
+
 ## Project Overview
 
 Jarig is a web application that allows users to find out the day of the week they were born on and the day of the week they have had the most birthdays on. The application uses the user's input of their birth date to calculate these details.
