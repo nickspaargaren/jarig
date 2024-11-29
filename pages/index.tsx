@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import styles from '../styles/Home.module.css';
 import { useTranslations } from 'next-intl';
+import { GetStaticPropsContext } from 'next';
 
 dayjs.locale('nl');
 
@@ -100,3 +101,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../messages/${locale}.json`)).default
+    }
+  };
+}

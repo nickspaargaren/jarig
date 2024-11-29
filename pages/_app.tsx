@@ -1,13 +1,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { NextIntlProvider } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
-    <NextIntlProvider messages={pageProps.messages}>
+    <NextIntlClientProvider
+      locale={router.locale}
+      messages={pageProps.messages}>
       <Component {...pageProps} />
-    </NextIntlProvider>
+    </NextIntlClientProvider>
   );
 }
 export default MyApp;
