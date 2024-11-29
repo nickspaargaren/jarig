@@ -12,3 +12,7 @@ updates:
     ignore:
       - dependency-name: "eslint"
         versions: [">= 8"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
