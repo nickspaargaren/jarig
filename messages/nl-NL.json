@@ -1,0 +1,11 @@
+{
+  "Home": {
+    "title": "Jarig",
+    "day": "Dag",
+    "month": "Maand",
+    "year": "Jaar",
+    "submit": "Verzenden",
+    "bornOn": "Je bent geboren op een {day}.",
+    "mostFrequent": "Je hebt het vaakst je verjaardag gevierd op een {day}."
+  }
+}
