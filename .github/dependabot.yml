@@ -6,6 +6,12 @@ updates:
       interval: "monthly"
       day: "monday"
     groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+        exclude-patterns:
+          - "eslint*"
       eslint:
         patterns:
           - "eslint*"
